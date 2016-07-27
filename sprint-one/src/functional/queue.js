@@ -7,7 +7,13 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    storage[someInstance.size()] = value;
+    var lastKey;
+    if (!someInstance.size()) {
+      lastKey = 0;
+    } else {
+      lastKey = Math.max(...Object.keys(storage)) + 1;
+    }
+    storage[lastKey] = value;
   };
 
   someInstance.dequeue = function() {
