@@ -1,5 +1,7 @@
+var linkedList;
+
 describe('linkedList', function() {
-  var linkedList;
+  
 
   beforeEach(function() {
     linkedList = LinkedList();
