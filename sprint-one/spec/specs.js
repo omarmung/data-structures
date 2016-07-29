@@ -49,8 +49,8 @@ define([
       });
 
       it('reports a size of 1 after adding two items and removing one', function() {
-        stack.push('a');
         stack.push('b');
+        stack.push('a');
         stack.pop();
         expect(stack.size()).to.equal(1);
       });
