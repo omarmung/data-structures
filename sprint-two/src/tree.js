@@ -24,20 +24,20 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  var wasFound = false;
   var checkNode = function(node) {
     if (node.value === target) {
-      wasFound = true;
+      return true;
     }
     if (node.children.length > 0) {
       for (var i = 0; i < node.children.length; i++) {
-        checkNode(node.children[i]);
+        if (checkNode(node.children[i])) {
+          return true;
+        }
       } 
     }
+    return false;
   };
-
-  checkNode(this);
-  return wasFound;
+  return checkNode(this);
 };
 
 /*
