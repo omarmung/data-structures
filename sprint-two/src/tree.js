@@ -2,7 +2,6 @@ var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
 
-  // your code here
   newTree.children = [];
   extend(newTree, treeMethods);
   return newTree;
@@ -17,7 +16,6 @@ var extend = function(to, from) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  // your code here
   var newChild = {};
   newChild.value = value;
   newChild.children = [];
@@ -26,18 +24,25 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  // check current node for target
-  return this.children[0].value === target;
-  // check children (loop through all)
-    // check children's children, etc
-  // var currentNode = this;
-  // while (!currentNode.children.length === 0) {
+  var wasFound = false;
+  var checkNode = function(node) {
+    if (node.value === target) {
+      wasFound = true;
+    }
+    if (node.children.length > 0) {
+      for (var i = 0; i < node.children.length; i++) {
+        checkNode(node.children[i]);
+      } 
+    }
+  };
 
-  // }
+  checkNode(this);
+  return wasFound;
 };
-
-
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+// addChild is O(1)
+// contains is O(n)
